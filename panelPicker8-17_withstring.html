@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>SPAN Panel Tool</title><style>
+.s{width:100%;min-height:100vh;background:#f8f9fa;position:relative;font-family:Graphik,-apple-system,BlinkMacSystemFont,sans-serif;overflow:hidden;box-sizing:border-box}
+.p{position:absolute;top:40px;left:80px;background:transparent!important;color:#6b7280!important;padding:0;font-size:18px;font-weight:400;z-index:50}
+.m{display:flex;flex-direction:column;min-height:100vh;position:relative;max-width:1200px;margin:0 auto;padding:80px 80px 20px}
+.a{flex:0;display:flex;align-items:flex-start;justify-content:flex-start;padding-top:0;min-height:auto;margin-bottom:15px}
+.c{width:100%;max-width:800px;background:white;border-radius:0;box-shadow:0 15px 30px rgba(0,0,0,.2);padding:50px 100px 50px 80px;text-align:left;position:relative;z-index:10;border:none;transition:transform .5s ease-out}
+.c.sl{transform:translateX(-100%);opacity:0;transition:transform .5s ease-out,opacity .5s ease-out .2s}
+.c.sr{transform:translateX(100%);opacity:0;transition:transform .5s ease-out,opacity .5s ease-out .2s}
+.c.fi{opacity:0;transition:opacity .5s ease-in-out}
+.q{font-size:48px;font-weight:600;color:#111827;line-height:1.1;margin-bottom:40px;min-height:auto;display:block;text-align:left}
+.t{display:flex;gap:15px;margin-top:0;justify-content:flex-start;flex-direction:column}
+.b{flex:none;padding:10px 24px;border:2px solid #111827;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;transition:all .3s ease;text-transform:none;letter-spacing:0;min-width:80px;position:relative;overflow:hidden;width:30%;max-width:200px;background:white;color:#111827}
+.b:hover,.y:hover,.n:hover,.k:hover,.j:hover{background:#f3f4f6}
+.b.ac{transform:scale(.95)}
+.y.ac{background:#10b981!important;color:white!important;border-color:#10b981!important}
+.n.ac{background:#6b7280!important;color:white!important;border-color:#6b7280!important}
+.y{background:white;color:#111827;border:2px solid #111827}
+.n{background:transparent;color:#111827}
+.i{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:#e5e7eb;border:none;border-radius:50%;cursor:pointer;font-size:12px;font-weight:600;color:#6b7280;margin-left:8px;vertical-align:top;margin-top:8px;transition:background .2s ease}
+.i:hover{background:#d1d5db}
+.io{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.ip{background:white;border-radius:8px;padding:20px;max-width:400px;width:100%;box-shadow:0 10px 25px rgba(0,0,0,.2);position:relative}
+.ic{position:absolute;top:10px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:#9ca3af;width:25px;height:25px;display:flex;align-items:center;justify-content:center}
+.ic:hover{color:#374151}
+.it{font-size:16px;font-weight:600;color:#111827;margin-bottom:10px;padding-right:25px}
+.id{font-size:14px;line-height:1.5;color:#374151}
+.k{background:white;color:#374151;border:2px solid #374151;width:40%;max-width:180px;margin-bottom:6px;padding:10px 20px}
+.k.ac{background:#374151!important;color:white!important;border-color:#374151!important}
+.j{background:white;color:#374151;border:2px solid #374151;width:auto;max-width:none;margin-bottom:10px;padding:10px 20px}
+.h{width:100%;max-width:100%;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px;justify-content:stretch;min-height:0;transition:min-height .3s ease;align-content:start}
+.e{background:transparent;border-radius:8px;padding:20px 24px;border:2px solid transparent;font-size:14px;width:100%;box-sizing:border-box;min-height:140px;visibility:hidden;display:none}
+.f{background:white;border-radius:8px;padding:20px 24px;cursor:pointer;transition:all .3s ease;border:2px solid #e5e7eb;font-size:14px;width:100%;box-sizing:border-box;min-height:140px;position:absolute;top:0;left:0;right:0;bottom:0}
+.f:hover{border-color:#9ca3af}
+.f.yes{border-color:#10b981}
+.f.no{border-color:#6b7280}
+@media (max-width:768px){
+.p{top:20px;left:20px!important;font-size:14px}
+.m{padding:20px}
+.a{padding-top:15px;min-height:auto;align-items:center;margin-bottom:12px}
+.c{max-width:90vw;padding:30px}
+.q{font-size:22px;margin-bottom:35px;min-height:70px}
+.h{grid-template-columns:1fr!important;margin-top:0!important;gap:6px!important}
+.t{flex-direction:column;gap:15px}
+.b{width:60%;max-width:180px;padding:10px 20px;font-size:13px}
+.k{width:75%;max-width:220px;padding:8px 16px;font-size:13px}
+}
+.s *{box-sizing:border-box}
+</style></head><body>
+<div class="s"><div class="p" id="p">Question 1 of 9</div><div class="m"><div class="a"><div class="c" id="c"><div class="q" id="q">Does the customer need or will need service upgrade avoidance?<button class="i" onclick="sI()" title="More information">i</button></div><div class="t"><button class="b y" id="y">YES</button><button class="b n" id="n">NO</button></div></div></div><div id="inst" style="background:#f9fafb;border:1px solid #e5e7eb;color:#6b7280;padding:8px 12px;border-radius:6px;font-size:13px;font-weight:400;margin-bottom:10px;margin-top:5px;text-align:left;display:none;">Select cards to change answers ↓</div><div class="h" id="h"><div class="e" id="ph0"></div><div class="e" id="ph1"></div><div class="e" id="ph2"></div><div class="e" id="ph3"></div><div class="e" id="ph4"></div><div class="e" id="ph5"></div><div class="e" id="ph6"></div><div class="e" id="ph7"></div><div class="e" id="ph8"></div><div class="e" id="ph9"></div><div class="e" id="ph10"></div><div class="e" id="ph11"></div><div class="e" id="ph12"></div></div></div><div class="io" id="o" onclick="hI()"><div class="ip" onclick="event.stopPropagation()"><button class="ic" onclick="hI()">×</button><div class="it" id="t">Question Info</div><div class="id" id="ic">Info not available</div></div></div></div>
+<script>
+var r=0,a=[],m=false,z=0,sC={},oV=null,oP=-1,SP='<br><span style=\'font-size:16px;font-weight:400;color:#6b7280;line-height:1.5;display:block;margin-top:8px;\'>',IB='display:inline-block;',WA='width:auto;max-width:none;padding:10px 20px',FS='font-size:',FW2='font-weight:',C1='#111827',C2='#10b981',C3='#6b7280',C4='#374151',B2='2px solid ';
+var q=["Does the customer need or will need service upgrade avoidance?","Does the customer want 100% monitoring and control?"+SP+"Homeowners can monitor and control every circuit in the home using the SPAN App</span>","Does the customer have or is planning a battery?"+SP+"Battery backup system installation</span>","Which battery system is being considered for the home?","Meter combo?"+SP+"Does the utility or local jurisdiction require a Meter Main panel at the service entrance?</span>","Is the panel out of date/code?"+SP+"Main Panel Replacement (MPR) required due to code violations or safety issues</span>","Doing other work upstream?"+SP+"e.g. adding disconnect outside</span>","Which panel type do you need?"+SP+"We recommend intercepting the existing panel’s feeders and installing SPAN as the new main panel.</span>","How many circuit spaces do you need?"+SP+"Be sure to leave room for upgrades</span>","What type of MID are you using?"+SP+"Microgrid Interconnect Device</span>","How many spaces do you need for backup loads?"+SP+"Include all loads the customer might want to backup. SPAN EMS will manage loads to prevent overload.</span>","From where will you be feeding SPAN?"+SP+"Based on your answers so far, SPAN may be installed as a main panel intercept or as subpanel, with whole home backup.</span>","What voltage is your project?"];
+var f=["Service upgrade avoidance allows customers to add new electrical loads (like EV chargers or heat pumps) without upgrading their electrical service from the utility. SPAN panels can help manage power consumption to avoid costly service upgrades.",'SPAN Home app pairs with the SPAN Panel to give your customers circuit-level management, real-time monitoring, and actionable energy insights.',"Does the customer currently have a battery storage system (e.g., Tesla Powerwall, FranklinWH), or are they planning to install one for backup power?","These five battery systems are compatible with SPAN: Tesla PW3, Tesla PW2, FranklinWH aPower, SolarEdge, and Enphase 5p. Battery compatibility varies by product - we will recommend the panel that's right for your project based on what backup system your customer has/you're planning to install.",'Meter Main panels are a combination of a meter socket and a main disconnect/breaker. They oftentimes also house loads from the home.','An electrical panel is "out of code" when it doesn\'t meet current safety rules, National Electrical Code standards, or AHJ requirements.',"This refers to any electrical work being done between the meter and the panel, such as adding an external disconnect switch.","Main panels have a breaker that protects the whole panel and can be used as the first means of disconnect. MLO (Main Lug Only) can only be used as a sub-panel.","Consider both current needs and future expansion. SPAN panels can manage more circuits than their physical spaces through intelligent load management.","A Microgrid Interconnect Device (MID) safely connects or isolates a home from the main power grid. A meter collar adapter does this from behind the meter socket, while a standalone MID is a separate enclosure.","When planning backup loads, include all circuits the customer might want to power during an outage. SPAN's Energy Management System will automatically manage these loads to prevent overloading the battery system.","Choose based on installation convenience and site layout. Feeding from the existing load center creates a traditional subpanel setup, while feeding directly from the MID or meter socket may require determining if a main disconnect is needed.","Most residential homes in North America use 240V split-phase power. Some homes, particularly condos and apartments, use 208V power."];
+var U="https://cdn.prod.website-files.com/62e15afb0ead4bad92750d3a/";
+var g={"SPAN 32":U+"687afd97e59e379a944246c5_span32.png","SPAN MLO 48":U+"687fe2c785a3b19d61f2008e_spanMLO48_cx.png","SPAN MAIN 40":U+"687fe2b6e6584073ec649563_spanMAIN40_cx.png","SPAN MLO 24":U+"687e9ba2f590309d3c5392fd_SPAN16MLO.png","SPAN MAIN 16":U+"687e9bc5b63d1de87525285c_spanMAIN16.png"};
+var TP='Tesla Powerwall 3',FW='FranklinWH';
+function cS(){sC={};}
+function sI(){document.getElementById('o').style.display='flex';document.getElementById('ic').textContent=f[r];}
+function hI(){document.getElementById('o').style.display='none';}
+function k(i){
+var cK=i+':'+a.join(',');
+if(sC[cK]!==undefined)return sC[cK];
+var s0=a[0],s1=a[1],s2=a[2],s3=a[3],s4=a[4],s5=a[5],s6=a[6],s7=a[7],s8=a[8],s9=a[9],s10=a[10],s11=a[11],s12=a[12];
+var e=false;
+if(i===11&&a[11]!==undefined){sC[cK]=true;return true;}
+else if(i===12){
+var sV = false;
+if(s0===true&&s1===true&&s2===true&&s3===TP&&s4===true&&s8==='25-32'){sV=true;}
+else if(s0===true&&s1===true&&s2===true&&s3===FW&&s4===true&&s8==='25-32'){sV=true;}
+else if(s0===true&&s1===false&&s2===false&&s4===false&&s5===true&&s7==='main'&&s8==='17-32'){sV=true;}
+else if(s0===true&&s1===true&&s2===true&&(s3===TP||s3===FW)&&s4===false&&s7==='main'&&s8==='17-32'){sV=true;}
+else if(s0===false&&s1===true&&s2===false&&s4===false&&s7==='main'&&s8==='17-32'){sV=true;}
+else if(s0===false&&s1===true&&s2===true&&(s3===TP||s3===FW)&&s4===false&&s7==='main'&&s8==='17-32'){sV=true;}
+else if(s0===false&&s1===false&&s2===true&&(s3===TP||s3===FW)&&s4===false&&s5===true&&s7==='main'&&s8==='17-32'){sV=true;}
+else if(s0===true&&s1===false&&s2===true&&(s3===TP||s3===FW)&&s4===false&&s5===true&&s7==='main'&&s8==='17-32'){sV=true;}
+e=!sV;
+sC[cK]=e;
+return e;
+}
+var nB=s3!==undefined&&s3!==FW&&s3!==TP;
+if(nB&&i>=4){e=true;}
+else if(s0===false&&s1===false&&s2===false){
+if(i===1||i===2)e=false;
+else if(i===3)e=true;
+else if(i===4)e=false;
+else if(s4===true){if(i===5||i===6||i===7||i===9||i===10)e=true;else if(i===8)e=false;}
+else{if(i===5)e=false;else if(s5===true){if(i===6||i===9||i===10)e=true;else if(i===7||i===8)e=false;}else if(r===12){
+qD.innerHTML=q[r];
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.textContent='240V';b1.onclick=function(){hC('240V')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.textContent='208V';b2.onclick=function(){hC('208V')};bD.appendChild(b2);
+}else if(i===12){
+qD.innerHTML=q[i];
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.textContent='240V';b1.onclick=function(){hC('240V')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.textContent='208V';b2.onclick=function(){hC('208V')};bD.appendChild(b2);
+}else{if(i===6)e=false;else if(i===7||i===8||i===9||i===10)e=true;}}}
+else if(s0===true&&s1===false&&s2===false){
+if(i===1||i===2||i===4)e=false;
+else if(i===3)e=true;
+else if(s4===true){if(i===5||i===6||i===7||i===8||i===9||i===10||i===11)e=true;}
+else if(s4===false){if(i===5)e=false;else if(s5===true){if(i===6||i===9||i===10||i===11)e=true;else if(i===7||i===8)e=false;}
+else{if(i===6)e=false;else if(s6===true){if(i===7)e=false;else if(i===8||i===9||i===10||i===11)e=true;}else{if(i===7||i===8||i===9||i===10||i===11)e=true;}}}}
+else if(s1===true){
+if(i===0||i===1||i===2)e=false;
+else if(i===3){if(s2===true)e=false;else e=true;}
+else if(i===4)e=false;
+else if(s4===true){if(i===5||i===6||i===7||i===9||i===10||i===11)e=true;else if(i===8)e=false;}
+else{if(i===5||i===6)e=true;else if(i===7||i===8)e=false;else if(i===9||i===10||i===11)e=true;}}
+else if(s2===true&&s1===false){
+if(i===0||i===1||i===2)e=false;
+else if(i===3)e=false;
+else if(i===4)e=false;
+else if(s4===true){if(i===5||i===6||i===7||i===8||i===11)e=true;else if(i===9)e=false;else if(s9==='collar'){if(i===10)e=true;}else if(s9==='standalone'){if(i===10)e=false;}}
+else{if(i===5)e=false;else if(s5===true){if(i===6||i===9||i===10||i===11)e=true;else if(i===7||i===8)e=false;}
+else{
+if(s0===true){if(i===6)e=true;else if(i===7||i===8)e=false;else if(i===9||i===10||i===11)e=true;}
+else{if(i===6||i===9||i===10)e=true;else if(i===7){if(a[11]==='mid')e=false;else e=true;}else if(i===8){e=true;}else if(i===11)e=false;}}}}
+sC[cK]=e;
+return e;
+}
+function gT(){if(a[3]!==undefined&&a[3]!==FW&&a[3]!==TP)return 4;var t=0;for(var i=0;i<q.length;i++){if(!k(i))t++;}return t;}
+function gI(t){if(t.includes("32"))return g["SPAN 32"];if(t.includes("48"))return g["SPAN MLO 48"];if(t.includes("40"))return g["SPAN MAIN 40"];if(t.includes("24"))return g["SPAN MLO 24"];if(t.includes("16"))return g["SPAN MAIN 16"];return g["SPAN MLO 24"];}
+function gQ(x){if(a[3]!==undefined&&a[3]!==FW&&a[3]!==TP){if(x===0)return 1;if(x===1)return 2;if(x===2)return 3;if(x===3)return 4;return 4;}var n=1;if(x===11&&a[1]===false&&a[2]===true&&a[4]===false&&a[5]===false)return 6;else if(x===7&&a[11]==='mid')return 7;else{for(var i=0;i<x;i++){if(!k(i))n++;}}return n;}
+function gN(){
+var n=r+1;
+var PW3=(a[0]===true&&a[1]===false&&a[2]===true&&a[3]===TP&&a[4]===false&&a[5]===false);
+var W=(a[0]===true&&a[1]===false&&a[2]===true&&a[3]===FW&&a[4]===false&&a[5]===false);
+if(PW3||W){if(r===5)return 11;if(r===11&&a[11]==='mid')return 7;if(r===7&&a[11]==='mid')return q.length;}
+if(a[0]===false&&a[1]===false&&a[2]===true&&a[4]===false&&a[5]===false){if(r===5)return 11;if(r===11&&a[11]==='mid')return 7;if(r===7&&a[11]==='mid')return q.length;}
+if(a[2]===true&&a[3]!==undefined&&a[3]!==FW&&a[3]!==TP){if(r===3)return q.length;if(r>=4)return q.length;}
+if(r===8){
+  if(a[0]===true&&a[1]===true&&a[2]===true&&a[3]===TP&&a[4]===true&&a[8]==='25-32'){return 12;}
+  if(a[0]===true&&a[1]===true&&a[2]===true&&a[3]===FW&&a[4]===true&&a[8]==='25-32'){return 12;}
+  if(a[0]===true&&a[1]===false&&a[2]===false&&a[4]===false&&a[5]===true&&a[7]==='main'&&a[8]==='17-32'){return 12;}
+  if(a[0]===true&&a[1]===true&&a[2]===true&&(a[3]===TP||a[3]===FW)&&a[4]===false&&a[7]==='main'&&a[8]==='17-32'){return 12;}
+  if(a[0]===false&&a[1]===true&&a[2]===false&&a[4]===false&&a[7]==='main'&&a[8]==='17-32'){return 12;}
+  if(a[0]===false&&a[1]===true&&a[2]===true&&(a[3]===TP||a[3]===FW)&&a[4]===false&&a[7]==='main'&&a[8]==='17-32'){return 12;}
+  if(a[0]===false&&a[1]===false&&a[2]===true&&(a[3]===TP||a[3]===FW)&&a[4]===false&&a[5]===true&&a[7]==='main'&&a[8]==='17-32'){return 12;}
+  if(a[0]===true&&a[1]===false&&a[2]===true&&(a[3]===TP||a[3]===FW)&&a[4]===false&&a[5]===true&&a[7]==='main'&&a[8]==='17-32'){return 12;}
+}
+if(r===12)return q.length;
+while(n<q.length&&k(n))n++;
+if(n>=q.length&&r===11&&a[11]==='mid'&&a[7]===undefined)return 7;
+return n;
+}
+function fN(){for(var i=0;i<q.length;i++){if(a[i]===undefined&&!k(i)){return i;}}return q.length;}
+function hA(v){if(m)return;m=true;cS();a[r]=v;var b=v?document.getElementById('y'):document.getElementById('n');b.classList.add('ac');setTimeout(function(){b.classList.remove('ac');var c=document.getElementById('c');c.classList.remove('sl','sr','fi');c.style.transform='';c.style.opacity='';c.offsetHeight;if(v)c.classList.add('sr');else c.classList.add('sl');cC(r,v,false);if(oV!==v&&iK(r)){cA(r);setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},1000);}else if(oV===v){setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},1000);}else{setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},1000);}},200);}
+function hB(b){if(m)return;m=true;cS();a[r]=b;cC(r,b,true);if(oV!==b){cA(r);setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},500);return;}setTimeout(function(){if(oP>=q.length){m=false;sR();return;}if(oP>r&&oP<q.length&&!k(oP)){r=oP;m=false;nQ(true);return;}var nx=fN();if(nx===q.length){m=false;sR();}else if(nx>0){r=nx;m=false;nQ(true);}else{m=false;var x=gN();if(x<q.length)nQ();else sR();}},500);}
+function hC(c){if(m)return;m=true;cS();a[r]=c;cC(r,c,true);if(oV!==c&&iK(r)){cA(r);setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},500);}else if(oV===c){setTimeout(function(){if(oP>r&&oP<q.length&&!k(oP)){r=oP;nQ();}else{var nx=fN();if(nx===q.length){sR();}else if(nx>0){r=nx;nQ();}else{var x=gN();if(x<q.length)nQ();else sR();}}m=false;},500);}else{setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},500);}}
+function hM(v){if(m)return;m=true;cS();a[r]=v;var c=document.getElementById('c');c.classList.remove('sl','sr','fi');c.style.transform='';c.style.opacity='';c.offsetHeight;if(v==='sub')c.classList.add('sl');else c.classList.add('sr');cC(r,v,true);if(oV!==v&&iK(r)){cA(r);setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},800);}else if(oV===v){setTimeout(function(){if(oP>r&&oP<q.length&&!k(oP)){r=oP;nQ();}else{var nx=fN();if(nx===q.length){sR();}else if(nx>0){r=nx;nQ();}else{var x=gN();if(x<q.length)nQ();else sR();}}m=false;},800);}else{setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},800);}}
+function hF(v){if(m)return;m=true;cS();a[r]=v;var c=document.getElementById('c');c.classList.remove('sl','sr','fi');c.style.transform='';c.style.opacity='';c.offsetHeight;if(v==='subpanel')c.classList.add('sl');else c.classList.add('sr');cC(r,v,true);if(oV!==v&&iK(r)){cA(r);setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},800);}else if(oV===v){setTimeout(function(){if(oP>r&&oP<q.length&&!k(oP)){r=oP;nQ();}else{var nx=fN();if(nx===q.length){sR();}else if(nx>0){r=nx;nQ();}else{var x=gN();if(x<q.length)nQ();else sR();}}m=false;},800);}else{setTimeout(function(){var x=gN();if(x<q.length)nQ();else sR();m=false;},800);}}
+function gC(i,v,s){var aT=s?v:(v?'Yes':'No');var aCol=s?C4:(v?C2:C3);var dN=gQ(i);var qT=q[i].split('<br>')[0];return'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;"><div style="font-weight:600;color:'+C4+';font-size:16px;">Q'+dN+'.</div><div style="display:inline-block;padding:6px 16px;border-radius:50px;font-weight:500;font-size:13px;color:white;background:'+aCol+';">'+aT+'</div></div><div style="color:'+C4+';font-size:14px;line-height:1.4;">'+qT+'</div>';}
+function cC(i,v,s){var h=document.getElementById('h');var eC=null;var eP=null;for(var j=0;j<13;j++){var ph=document.getElementById('ph'+j);if(ph&&ph.firstChild){var cd=ph.firstChild;if(parseInt(cd.getAttribute('data-question-index'))===i){eC=cd;eP=ph;break;}}}if(eC&&eP){uC(i,v,s);return;}var pl=document.getElementById('ph'+z);if(!pl)return;pl.style.visibility='visible';pl.style.position='relative';pl.style.display='block';var cd=document.createElement('div');cd.className='f '+(s?'special':(v?'yes':'no'));cd.setAttribute('data-question-index',i);cd.innerHTML=gC(i,v,s);cd.onclick=function(e){e.stopPropagation();eA(i)};cd.onmouseover=function(){this.style.backgroundColor='#f9fafb'};cd.onmouseout=function(){this.style.backgroundColor='white'};pl.innerHTML='';pl.appendChild(cd);z++;if(z===1){var inst=document.getElementById('inst');if(inst)inst.style.display='block';}}
+function nQ(sC){
+for(var k=0;k<13;k++){var ph2=document.getElementById('ph'+k);if(ph2&&ph2.firstChild){var cd2=ph2.firstChild;cd2.removeAttribute('data-editing');cd2.style.backgroundColor='white';var cI2=parseInt(cd2.getAttribute('data-question-index'));var cAns2=a[cI2];if(cAns2===true){cd2.style.border=B2+C2;}else if(cAns2===false){cd2.style.border=B2+C3;}else{cd2.style.border=B2+C4;}}}
+oV=null;
+if(!sC){oP=-1;}
+var x=sC?r:gN();
+if(x>=q.length){m=false;sR();return;}
+r=x;
+var c=document.getElementById('c');
+c.classList.remove('sl','sr','fi');
+c.style.transform='none';c.style.opacity='0';c.style.transition='opacity .6s ease-out';
+var qD=document.createElement('div');
+qD.className='q';
+qD.id='q';
+var bD=document.createElement('div');
+bD.className='t';
+var ib=document.createElement('button');
+ib.className='i';
+ib.onclick=sI;
+ib.title='More information';
+ib.textContent='i';
+if(r===3){
+qD.innerHTML=q[r];
+qD.appendChild(ib);
+var b=[TP,'Tesla Powerwall 2','Powerwall +',FW,'SolarEdge','Enphase'];
+b.forEach(function(bt){var btn=document.createElement('button');btn.className='b j';btn.textContent=bt;btn.onclick=function(){hB(bt)};bD.appendChild(btn);});
+}else if(r===7){
+var qT="Which panel type do you need?"+SP;
+if(a[1]===true&&a[4]===false){qT+="We recommend removing the existing load center and replacing it with SPAN. Do you need a panel that can serve as main service disconnect or a subpanel with lugs only?";}
+else if(a[0]===true&&a[1]===false&&a[2]===true&&a[4]===false&&a[5]===false&&a[3]===TP&&a[11]!=='mid'){qT+="We recommend removing the existing load center and replacing it with SPAN. Do you need a panel that can serve as main service disconnect or a subpanel with lugs only?";}
+else if(a[5]===true){qT+="We recommend removing the existing load center and replacing it with SPAN. Do you need a panel that can serve as main service disconnect or a subpanel with lugs only?";}
+else if(a[6]===true){qT+="We recommend intercepting the existing panel’s feeders and installing SPAN as the new main panel.<br><a href='https://techportal.span.io/s/technical-documents' target='_blank' style='color:#111827;text-decoration:underline;'>Tech Docs</a><br><br> Do you need a panel that can serve as main service disconnect or a sub panel with lugs only?";}
+else if(a[11]==='mid'){qT+="Do you need a panel that can serve as main service disconnect or a subpanel with lugs only?";}qT+="</span>";
+qD.innerHTML=qT;
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.textContent='Subpanel (MLO)';b1.onclick=function(){hM('sub')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.textContent='MAIN Disconnect';b2.onclick=function(){hM('main')};bD.appendChild(b2);
+}else if(r===8){
+qD.innerHTML=q[r];
+qD.appendChild(ib);
+var nM=(a[7]==='main');
+var iMM=(a[1]===true&&a[4]===true);
+var o=iMM?['8-24','25-32','25-48']:nM?['8-16','17-32','33-40']:['8-24','25-48'];
+o.forEach(function(opt){var btn=document.createElement('button');btn.className='b k';btn.textContent=opt;btn.onclick=function(){hC(opt)};bD.appendChild(btn);});
+}else if(r===9){
+qD.innerHTML=q[r];
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.innerHTML='Meter Collar Adaptor<br>(e.g. Backup Switch)';b1.style.width='80%';b1.style.maxWidth='400px';b1.onclick=function(){hC('collar')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.innerHTML='Standalone MID<br>(e.g. Backup Gateway, aGate)';b2.style.width='80%';b2.style.maxWidth='400px';b2.onclick=function(){hC('standalone')};bD.appendChild(b2);
+}else if(r===10){
+qD.innerHTML=q[r];
+qD.appendChild(ib);
+['8-24','25-48'].forEach(function(opt){var btn=document.createElement('button');btn.className='b k';btn.textContent=opt;btn.onclick=function(){hC(opt)};bD.appendChild(btn);});
+}else if(r===11){
+qD.innerHTML=q[r];
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.textContent='From pre-existing load center as a subpanel';b1.style.cssText=WA;b1.onclick=function(){hF('subpanel')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.innerHTML='From MID (standalone) or meter socket<br>with socket adaptor MID';b2.style.cssText=WA;b2.onclick=function(){hF('mid')};bD.appendChild(b2);
+}else if(r===12){
+qD.innerHTML=q[r];
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.textContent='240V';b1.onclick=function(){hC('240V')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.textContent='208V';b2.onclick=function(){hC('208V')};bD.appendChild(b2);
+}else{
+qD.innerHTML=q[r];
+qD.appendChild(ib);
+var bY=document.createElement('button');bY.className='b y';bY.id='y';bY.textContent='YES';bY.onclick=function(){hA(true)};bD.appendChild(bY);
+var bN=document.createElement('button');bN.className='b n';bN.id='n';bN.textContent='NO';bN.onclick=function(){hA(false)};bD.appendChild(bN);
+}
+c.innerHTML='';
+c.appendChild(qD);
+c.appendChild(bD);
+var cN=gQ(r);
+var tN=gT();
+document.getElementById('p').textContent='Question '+cN+' of '+tN;
+setTimeout(function(){c.style.opacity='1';setTimeout(function(){c.style.transition='';m=false;},600);},300);
+}
+function sR(){
+m=false;
+r=q.length;
+oV=null;
+oP=-1;
+for(var k=0;k<13;k++){var ph2=document.getElementById('ph'+k);if(ph2&&ph2.firstChild){var cd2=ph2.firstChild;cd2.removeAttribute('data-editing');cd2.style.backgroundColor='white';var cI2=parseInt(cd2.getAttribute('data-question-index'));var cAns2=a[cI2];if(cAns2===true){cd2.style.border='2px solid '+C2;}else if(cAns2===false){cd2.style.border='2px solid '+C3;}else{cd2.style.border='2px solid '+C4;}}}
+var rc=fR();
+var ig=gI(rc.title);
+var c=document.getElementById('c');
+c.classList.remove('sl','sr','fi');
+c.style.transform='none';
+c.style.opacity='1';
+c.style.transition='';
+document.getElementById('p').style.display='none';
+var tL="https://techportal.span.io/s/span-panel";
+if(rc.title.includes("32")){tL="https://techportal.span.io/s/span-panel";}
+else if(rc.title.includes("48")){tL="https://techportal.span.io/s/span-panel";}
+else if(rc.title.includes("40")){tL="https://techportal.span.io/s/span-panel";}
+else if(rc.title.includes("24")){tL="https://techportal.span.io/s/span-panel";}
+else if(rc.title.includes("16")){tL="https://techportal.span.io/s/span-panel";}
+setTimeout(function(){
+var iM=window.innerWidth<=768;
+var sB='<button class="b" onclick="sE()" style="'+IB+'width:fit-content;background:#111827;color:white;border-color:#111827;">Share results</button>';
+var rB='<button class="b" onclick="rS()" style="'+IB+'width:fit-content;">Start new assessment</button>';
+var sldB='<button class="b" onclick="oSLD()" style="'+IB+'width:fit-content;background:#2563eb;color:white;border-color:#2563eb;">SLD example</button>';
+var tD='<a href="'+tL+'" target="_blank" style="'+IB+'background:transparent;color:#111827;text-decoration:none;padding:10px 25px;border-radius:50px;font-size:14px;font-weight:500;border:2px solid #111827;width:fit-content;">Tech docs</a>';
+var rH='<div style="'+FS+'28px;'+FW2+'600;margin-bottom:20px;color:#111827;">Recommendation</div><div style="background:#111827;color:white;padding:20px;border-radius:0;margin:0 0 20px 0;'+FS+'22px;'+FW2+'600;">'+rc.title+'</div><div style="'+FS+'16px;color:#6b7280;margin-bottom:25px;line-height:1.4;">'+rc.description+'</div>';
+if(rc.title==="Choose appropriate SPAN panel"){document.getElementById('c').innerHTML='<div style="display:flex;align-items:flex-start;gap:20px;flex-direction:column;"><div style="flex:1;width:100%;">'+rc.description+'<div style="display:flex;gap:12px;flex-direction:column;">'+tD+sldB+sB+rB+'</div></div></div>';}
+else if(iM){document.getElementById('c').innerHTML='<div style="display:flex;align-items:center;flex-direction:column;gap:30px;text-align:center;"><img src="'+ig+'" alt="'+rc.title+'" style="width:120px;height:auto;border-radius:8px;margin:0 auto;" onerror="this.style.display=\'none\'"><div style="width:100%;"><div style="'+FS+'18px;'+FW2+'600;margin-bottom:10px;color:'+C1+';text-align:left;">Recommended product: '+rc.title+'</div><div style="'+FS+'16px;color:'+C3+';margin-bottom:25px;text-align:left;">Recommended install configuration: '+rc.description+'</div><div style="display:flex;gap:12px;flex-direction:column;align-items:center;">'+tD.replace('width:fit-content','width:80%;max-width:250px').replace('padding:10px 25px','padding:12px 30px')+sB+rB.replace('width:fit-content','width:80%;max-width:250px')+'</div></div></div>';}
+else{document.getElementById('c').innerHTML='<div style="display:flex;align-items:flex-start;gap:40px;flex-direction:row;"><div style="flex:0 0 auto;"><img src="'+ig+'" alt="'+rc.title+'" style="width:150px;height:auto;border-radius:8px;" onerror="this.style.display=\'none\'"></div><div style="flex:1;">'+rH+'<div style="display:flex;gap:12px;flex-direction:column;">'+tD+sldB+sB+rB+'</div></div></div>';}
+},100);
+}
+function fR(){
+var s0=a[0],s1=a[1],s2=a[2],s3=a[3],s4=a[4],s5=a[5],s6=a[6],s7=a[7],s8=a[8],s9=a[9],s10=a[10],s11=a[11],s12=a[12];
+var aR=s0?" + SPAN CT":"";
+var SC="<br><br>SPAN CTs let homeowners monitor total home power consumption via the SPAN Home App when loads exist upstream of the SPAN Panel. They also help SPAN PowerUp stay within utility limits on-grid and optimize backup loads off-grid without overloading the battery.";
+var P="Panel replacement",p="panel replacement",M="main panel intercept",U="upstream splice",C="(controllable loads panel)",B="(backup loads panel)",S="subpanel",L="Code-compliant upgrade",D="load center",R="SPAN CT";
+if(s2===true&&s3==='Powerwall +')return{title:"SPAN MAIN 32",description:"Panel replacement.<br><br>The SPAN Panel MAIN 32 works seamlessly with your Tesla Powerwall+ system for advanced home energy management."};
+if(s2===true&&s3==='Tesla Powerwall 2')return{title:"SPAN MAIN 32",description:"Panel replacement.<br><br>The SPAN Panel MAIN 32 transforms your Tesla Powerwall 2 into an intelligent whole-home backup system."};
+if(s2===true&&s3==='Enphase')return{title:"SPAN MAIN 32",description:"Panel replacement.<br><br>The SPAN Panel MAIN 32 is the perfect companion for your Enphase IQ Battery system, delivering unprecedented control and visibility during power outages. With SPAN's Remote Meter Kit integration, your Enphase batteries become even more powerful"};
+if(s2===true&&s3==='SolarEdge')return{title:"SPAN MAIN 32",description:"Panel replacement.<br><br>The SPAN Panel MAIN 32 seamlessly integrates with your SolarEdge Home Hub and Home Battery system, transforming your home into an intelligent energy ecosystem."};
+if(s2===true&&s3!==undefined&&s3!==FW&&s3!==TP)return{title:"SPAN MAIN 32",description:"Panel replacement"};
+if(s0===true&&s1===false&&s2===true){
+if(s4===false&&s5===false&&s11!=='mid'){
+if(s7==='main'){
+if(s8==='8-16'){return{title:"SPAN MAIN 16",description:"Panel replacement"+aR+(aR?SC:"")};}
+else if(s8==='17-32'){return{title:"SPAN MAIN 32",description:"Panel replacement"+aR+(aR?SC:"")};}
+else if(s8==='33-40'){return{title:"SPAN MAIN 40",description:"Panel replacement"+aR+(aR?SC:"")};}}
+else if(s7==='sub'){
+if(s8==='8-24'){return{title:"SPAN MLO 24",description:"Panel replacement"+aR+(aR?SC:"")};}
+else if(s8==='25-48'){return{title:"SPAN MLO 48",description:"Panel replacement"+aR+(aR?SC:"")};}}}}
+if(s0===false&&s1===false&&s2===false){if(s4===true){if(s8==='8-16')return{title:"SPAN MAIN 16",description:"Panel replacement"};if(s8==='17-32')return{title:"SPAN MLO 24",description:"Panel replacement"};if(s8==='8-24')return{title:"SPAN MLO 24",description:"Panel replacement"};if(s8==='25-32')return{title:"SPAN MAIN 32",description:"Panel replacement"};if(s8==='33-40')return{title:"SPAN MAIN 40",description:"Panel replacement"};if(s8==='25-48')return{title:"SPAN MLO 48",description:"Panel replacement"};}else{if(s5===true){if(s7==='sub'){if(s8==='8-24')return{title:"SPAN MLO 24 ",description:"Main panel replacement"};if(s8==='25-48')return{title:"SPAN MLO 48",description:"Main panel replacement."};}else if(s7==='main'){if(s8==='8-16')return{title:"SPAN MAIN 16",description:"Main panel replacement."};if(s8==='17-32'){
+if(s12==='208V'){return{title:"SPAN MAIN 40",description:"Main panel replacement."};}
+else{return{title:"SPAN MAIN 32",description:"Main panel replacement."};}}if(s8==='33-40')return{title:"SPAN MAIN 40",description:"Main panel replacement."};}}else{if(s6===true){return{title:"Choose appropriate SPAN panel",description:"We recommend intercepting the existing panel’s feeders and installing SPAN as the new main panel.<br><br>• <strong>SPAN MAIN 16</strong> - For main service disconnect needs<br>• <strong>SPAN MLO 24</strong> - For subpanel (MLO) configurations<br><br>Choose based on whether you need a panel that can serve as main service disconnect or a subpanel with lugs only."};}else{return{title:"SPAN MLO 24",description:"Subpanel + SPAN CT"+SC};}}}}
+if(s0===true&&s1===false&&s2===false){if(s4===true){return{title:"SPAN MLO 24",description:"Subpanel + SPAN CT"+SC};}else{if(s5===true){if(s7==='sub'){if(s8==='8-24')return{title:"SPAN MLO 24 ",description:"Main panel replacement."};if(s8==='25-48')return{title:"SPAN MLO 48",description:"Main panel replacement."};}else if(s7==='main'){if(s8==='8-16')return{title:"SPAN MAIN 16",description:"Main panel replacement."};if(s8==='17-32'){
+if(s12==='208V'){return{title:"SPAN MAIN 40",description:"Main panel replacement"};}
+else{return{title:"SPAN MAIN 32 ",description:"Main panel replacement."};}}if(s8==='33-40')return{title:"SPAN MAIN 40",description:"Main panel replacement"};}}else{if(s6===true){if(s7==='main'){return{title:"SPAN MAIN 16",description:"Main panel intercept<br><br>Relocate large loads to SPAN for monitoring/control."};}else if(s7==='sub'){return{title:"SPAN MLO 24",description:"Main panel intercept. <br><br>Relocate large loads to SPAN for monitoring/control."};}}else{return{title:"SPAN MLO 24",description:"Subpanel + SPAN CT"+SC};}}}}
+if(s1===true){if(s4===true){if(s8==='8-24')return{title:"SPAN MLO 24",description:"Subpanel + relocate all loads to SPAN for 100% control."};if(s8==='25-32'){
+if(s12&&(s12==='208V'||s12==='208v'||s12.toString().includes('208'))){return{title:"SPAN MLO 48",description:"Subpanel + relocate all loads to SPAN for 100% control."};} 
+else{return{title:"SPAN MAIN 32",description:"Subpanel + relocate all loads to SPAN for 100% control"};}}
+if(s8==='25-48')return{title:"SPAN MLO 48",description:"Subpanel + relocate all loads to SPAN for 100% control"};}else{if(s7==='sub'){if(s8==='8-24')return{title:"SPAN MLO 24",description:"Panel replacement with 100% monitoring"};if(s8==='25-48')return{title:"SPAN MLO 48",description:"Panel replacement with 100% monitoring"};}else if(s7==='main'){if(s8==='8-16')return{title:"SPAN MAIN 16",description:"Panel replacement with 100% monitoring"};if(s8==='17-32'){
+if(s12==='208V'){
+if(s2===true&&(s3===TP||s3===FW)){
+return{title:"SPAN MAIN 40",description:"Panel replacement with 100% monitoring. Optimized for "+s3+" and 208V service."};}
+else{return{title:"SPAN MAIN 40",description:"Panel replacement with 100% monitoring. Optimized for 208V service."};}
+}
+else{return{title:"SPAN MAIN 32",description:"Panel replacement with 100% monitoring"};}
+}if(s8==='33-40')return{title:"SPAN MAIN 40",description:"Panel replacement with 100% monitoring"};}}}
+if(s2===true&&s1===false){if(s4===true){if(s9==='collar'){return{title:"SPAN MLO 24",description:"Subpanel (whole home backup) + SPAN CT"+SC};}else if(s9==='standalone'){if(s10==='8-24')return{title:"SPAN MLO 24",description:"Subpanel (partial home backup) + SPAN CT (if service upgrade avoidance needed)"+SC};if(s10==='25-48')return{title:"SPAN MLO 48",description:"Subpanel (partial home backup) + SPAN CT (if service upgrade avoidance needed)"+SC};}}else{if(s5===true){if(s8==='8-16')return{title:"SPAN MAIN 16 ",description:"Main panel replacement."};if(s8==='17-32'){
+if((s3===TP||s3===FW)&&s7==='main'&&s12==='208V'){
+return{title:"SPAN MAIN 40",description:"Main panel replacement."};}
+else if((s3===TP||s3===FW)&&s7==='main'){
+return{title:"SPAN MAIN 32",description:"Main panel replacement."};}
+else{return{title:"SPAN MLO 24",description:"Main panel replacement."};}
+}if(s8==='8-24')return{title:"SPAN MLO 24",description:"Main panel replacement."};if(s8==='25-32')return{title:"SPAN MAIN 32",description:"Main panel replacement."};if(s8==='33-40')return{title:"SPAN MAIN 40",description:"Main panel replacement."};if(s8==='25-48')return{title:"SPAN MLO 48",description:"Main panel replacement."};}else{if(s11==='subpanel'){return{title:"SPAN MLO 24",description:"Subpanel (whole home backup) + SPAN CT"+SC};}else if(s11==='mid'){if(s7==='main'){if(s8==='8-16'){return{title:"SPAN MAIN 16",description:"Main panel intercept (whole home backup)<br><br>Relocate large loads to SPAN for monitoring/control."};}else if(s8==='17-32'){return{title:"SPAN MAIN 32",description:"Main panel intercept (whole home backup)<br><br>Relocate large loads to SPAN for monitoring/control."};}else if(s8==='33-40'){return{title:"SPAN MAIN 40",description:"Main panel intercept (whole home backup)<br><br>Relocate large loads to SPAN for monitoring/control."};}else{return{title:"SPAN MAIN 16",description:"Main panel intercept (whole home backup)<br><br>Relocate large loads to SPAN for monitoring/control."};}}else if(s7==='sub'){return{title:"SPAN MLO 24",description:"Main panel intercept (whole home backup)<br><br>Relocate large loads to SPAN for monitoring/control."};}}}}}
+return{title:"SPAN MLO 24",description:"Main panel replacement."};
+}
+function rS(){cS();r=0;a=[];m=false;z=0;oV=null;oP=-1;document.getElementById('p').style.display='block';for(var i=0;i<13;i++){var ph=document.getElementById('ph'+i);if(ph){ph.innerHTML='';ph.style.visibility='hidden';ph.style.position='static';ph.style.display='none';if(ph.firstChild){ph.firstChild.removeAttribute('data-editing');}}}var inst=document.getElementById('inst');if(inst)inst.style.display='none';document.getElementById('c').innerHTML='<div class="q" id="q">'+q[0]+'<button class="i" onclick="sI()" title="More information">i</button></div><div class="t"><button class="b y" id="y">YES</button><button class="b n" id="n">NO</button></div>';document.getElementById('y').onclick=function(){hA(true)};document.getElementById('n').onclick=function(){hA(false)};var tQ=gT();document.getElementById('p').textContent='Question 1 of '+tQ;}
+function iK(i){if(i===3)return true;if(a[1]===false&&a[2]===true&&a[4]===false&&a[5]===false&&(i===11||i===7))return false;return[0,1,2,4,5,6,7,8,9,11,12].includes(i);}
+function sT(){if(window.innerWidth<=768){var st=document.getElementById('span-tool-anchor');if(st){st.scrollIntoView({behavior:'smooth',block:'start'});}else{var te=document.querySelector('.st');if(te){te.scrollIntoView({behavior:'smooth',block:'start'});}}}}
+function cA(x){var cl=false;for(var i=x+1;i<a.length;i++){if(a[i]!==undefined){a[i]=undefined;cl=true;}}if(cl){var rC=[];for(var j=0;j<13;j++){var ph=document.getElementById('ph'+j);if(ph&&ph.firstChild){var cd=ph.firstChild;var qI=parseInt(cd.getAttribute('data-question-index'));if(qI<=x){rC.push({index:qI,element:cd.cloneNode(true)});}ph.innerHTML='';ph.style.visibility='hidden';ph.style.position='static';ph.style.display='none';}}z=0;rC.forEach(function(d){var ph=document.getElementById('ph'+z);if(ph){ph.style.visibility='visible';ph.style.position='relative';ph.style.display='block';var nC=d.element;if(nC.getAttribute('data-editing')){var ik=iK(d.index);nC.style.backgroundColor=ik?'#fecaca':'#fef3c7';nC.style.border='2px solid '+(ik?'#dc2626':'#f59e0b');}nC.onclick=function(e){e.stopPropagation();eA(d.index)};nC.onmouseover=function(){if(!this.getAttribute('data-editing'))this.style.backgroundColor='#f9fafb'};nC.onmouseout=function(){if(!this.getAttribute('data-editing'))this.style.backgroundColor='white'};ph.appendChild(nC);z++;}});if(z===0){var inst=document.getElementById('inst');if(inst)inst.style.display='none';}}cS();}
+function eA(i){
+sT();
+if(oP===-1){oP=r;}
+var tC=null;
+for(var j=0;j<13;j++){var ph=document.getElementById('ph'+j);if(ph&&ph.firstChild){var cd=ph.firstChild;var cI=parseInt(cd.getAttribute('data-question-index'));cd.style.opacity='1';if(cI!==i){cd.style.backgroundColor='white';var cAns=a[cI];if(cAns===true){cd.style.border=B2+C2;}else if(cAns===false){cd.style.border=B2+C3;}else{cd.style.border=B2+C4;}}if(cI===i){tC=cd;}}}
+var og=a[i];
+var ik=iK(i);
+for(var k=0;k<13;k++){var ph2=document.getElementById('ph'+k);if(ph2&&ph2.firstChild){ph2.firstChild.removeAttribute('data-editing');}}
+if(tC){tC.style.backgroundColor=ik?'#fecaca':'#fef3c7';tC.style.border='2px solid '+(ik?'#dc2626':'#f59e0b');tC.setAttribute('data-editing','true');}
+r=i;
+oV=a[i];
+m=false;
+var cN=gQ(i);
+var tN=gT();
+var pT='Question '+cN+' of '+tN;
+if(ik)pT+=' (Key decision - may reset path)';
+else pT+=' (Editing)';
+document.getElementById('p').textContent=pT;
+document.getElementById('p').style.display='block';
+setTimeout(function(){
+var c=document.getElementById('c');
+c.classList.remove('sl','sr','fi');
+c.style.transform='none';
+c.style.opacity='1';
+c.style.transition='';
+c.innerHTML='';
+var qD=document.createElement('div');
+qD.className='q';
+qD.id='q';
+var bD=document.createElement('div');
+bD.className='t';
+var ib=document.createElement('button');
+ib.className='i';
+ib.onclick=sI;
+ib.title='More information';
+ib.textContent='i';
+if(i===3){
+qD.innerHTML=q[i];
+qD.appendChild(ib);
+var b2=[TP,'Tesla Powerwall 2','Powerwall +',FW,'SolarEdge','Enphase'];
+b2.forEach(function(bt){var btn=document.createElement('button');btn.className='b j';btn.textContent=bt;btn.onclick=function(){hB(bt)};bD.appendChild(btn);});
+}else if(i===7){
+var qT="Which panel type do you need?"+SP;
+if(a[1]===true&&a[4]===false){qT+="We recommend removing the existing load center and replacing it with SPAN.";}
+else if(a[0]===true&&a[1]===false&&a[2]===true&&a[4]===false&&a[5]===false&&a[3]===TP&&a[11]!=='mid'){qT+="We recommend removing the existing load center and replacing it with SPAN.";}
+else if(a[5]===true){qT+="We recommend removing the existing load center and replacing it with SPAN.";}
+else if(a[6]===true){qT+="We recommend intercepting the existing panel’s feeders and installing SPAN as the new main panel.<br><a href='https://techportal.span.io/s/technical-documents' target='_blank' style='color:#111827;text-decoration:underline;'>Tech Docs</a>";}
+else if(a[11]==='mid'){qT+="We recommend removing the existing load center and replacing it with SPAN. Do you need a panel that can serve as main service disconnect or a subpanel with lugs only?";}qT+="</span>";
+qD.innerHTML=qT;
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.textContent='Subpanel (MLO)';b1.onclick=function(){hM('sub')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.textContent='MAIN Disconnect';b2.onclick=function(){hM('main')};bD.appendChild(b2);
+}else if(i===8){
+qD.innerHTML=q[i];
+qD.appendChild(ib);
+var nM=(a[7]==='main');
+var iMM=(a[1]===true&&a[4]===true);
+var opts=iMM?['8-24','25-32','25-48']:nM?['8-16','17-32','33-40']:['8-24','25-48'];
+opts.forEach(function(opt){var btn=document.createElement('button');btn.className='b k';btn.textContent=opt;btn.onclick=function(){hC(opt)};bD.appendChild(btn);});
+}else if(i===9){
+qD.innerHTML=q[i];
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.innerHTML='Meter Collar Adaptor<br>(e.g. Backup Switch)';b1.style.width='80%';b1.style.maxWidth='400px';b1.onclick=function(){hC('collar')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.innerHTML='Standalone MID<br>(e.g. Backup Gateway, aGate)';b2.style.width='80%';b2.style.maxWidth='400px';b2.onclick=function(){hC('standalone')};bD.appendChild(b2);
+}else if(i===10){
+qD.innerHTML=q[i];
+qD.appendChild(ib);
+['8-24','25-48'].forEach(function(opt){var btn=document.createElement('button');btn.className='b k';btn.textContent=opt;btn.onclick=function(){hC(opt)};bD.appendChild(btn);});
+}else if(i===11){
+qD.innerHTML=q[i];
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.textContent='From pre-existing load center as a subpanel';b1.style.cssText=WA;b1.onclick=function(){hF('subpanel')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.innerHTML='From MID (standalone) or meter socket<br>with socket adaptor MID';b2.style.cssText=WA;b2.onclick=function(){hF('mid')};bD.appendChild(b2);
+}else if(i===12){
+qD.innerHTML=q[i];
+qD.appendChild(ib);
+var b1=document.createElement('button');b1.className='b k';b1.textContent='240V';b1.onclick=function(){hC('240V')};bD.appendChild(b1);
+var b2=document.createElement('button');b2.className='b k';b2.textContent='208V';b2.onclick=function(){hC('208V')};bD.appendChild(b2);
+}else{
+qD.innerHTML=q[i];
+qD.appendChild(ib);
+var bY=document.createElement('button');bY.className='b y';bY.id='y';bY.textContent='YES';bY.onclick=function(){hA(true)};bD.appendChild(bY);
+var bN=document.createElement('button');bN.className='b n';bN.id='n';bN.textContent='NO';bN.onclick=function(){hA(false)};bD.appendChild(bN);
+}
+c.innerHTML='';
+c.appendChild(qD);
+c.appendChild(bD);
+m=false;
+},100);
+}
+function uC(i,v,s){var tC=null;var tP=null;for(var j=0;j<12;j++){var ph=document.getElementById('ph'+j);if(ph&&ph.firstChild){var cd=ph.firstChild;if(parseInt(cd.getAttribute('data-question-index'))===i){tC=cd;tP=ph;break;}}}if(!tC||!tP)return;tC.className='f '+(s?'special':(v?'yes':'no'));var aCol=s?C4:(v?C2:C3);tC.innerHTML=gC(i,v,s);tC.style.opacity='1';tC.style.border='2px solid '+aCol;tC.style.backgroundColor='white';tC.onclick=function(e){e.stopPropagation();eA(i)};tC.onmouseover=function(){this.style.backgroundColor='#f9fafb'};tC.onmouseout=function(){this.style.backgroundColor='white'};}
+function gS(){var sum="Assessment Summary:\n\n";for(var i=0;i<q.length;i++){if(a[i]!==undefined&&!k(i)){var qe=q[i].split('<br>')[0];var an=a[i];if(typeof an==='boolean'){sum+=qe+"\nAnswer: "+(an?"Yes":"No")+"\n\n";}else{sum+=qe+"\nAnswer: "+an+"\n\n";}}}return sum;}
+function sE(){var rc=fR();var sum=gS();var subj=encodeURIComponent("SPAN Panel Recommendation: "+rc.title);var bd=encodeURIComponent("SPAN Panel Assessment Results\n\n"+sum+"\nRecommendation: "+rc.title+"\n\n"+rc.description.replace(/<[^>]*>/g,'')+"\n\nFor more information, visit: "+window.location.href);var ml="mailto:?subject="+subj+"&body="+bd;window.open(ml,'_blank');}
+function gDURL(){var rc=fR();var cfg=rc.description.split('<br><br>')[0].replace(/<[^>]*>/g,'');var p={upgrade:a[0]?'Yes':'No',monitoring:a[1]?'Yes':'No',battery:a[2]?'Yes':'No',meterCombo:a[4]?'Yes':'No',panelOutOfDate:a[5]?'Yes':'No',upstreamWork:a[6]?'Yes':'No',recommendation:rc.title,configuration:cfg};if(a[2]&&a[3])p.batteryType=a[3];if(a[7])p.panelType=a[7];if(a[8])p.circuits=a[8];if(a[12])p.voltage=a[12];return new URLSearchParams(p).toString();}
+function oSLD(){window.open('https://span-playground.webflow.io/span-selector?'+gDURL(),'_blank');}
+setTimeout(function(){document.getElementById('y').onclick=function(){hA(true)};document.getElementById('n').onclick=function(){hA(false)};var tQ=gT();document.getElementById('p').textContent='Question 1 of '+tQ;},500);
+</script>
+</body>
+</html>
